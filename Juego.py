@@ -4,10 +4,16 @@ fichas = [5, 5, 5, 5]
 nombres = ["j1", "j2", "j3", "j4"]
 apuesta = 0
 
-def tirarPerinola():
-    caras = ("Pon 1", "Toma 2", "Todos Ponen",
-     "Toma 1", "Pon 2", "Toma Todo")
-    return choice(caras)
+class Perinola:
+    def __init__(self):
+        self.cara_visible = "pon 1"
+    def __repr__(self):
+        return f"salio: {self.cara_visible}"
+    def tirar(self):
+        caras = ("Pon 1", "Toma 2", "Todos Ponen",
+            "Toma 1", "Pon 2", "Toma Todo")
+        self.cara_visible = choice(caras)
+        return self.cara_visible
 
 def ponerTodos():
     global apuesta
@@ -47,9 +53,7 @@ def quedaUnSoloJugador():
   return len(fichas) == 1
 
 
-## Programa Principal
-
-ponerTodos()
+##ponerTodos()
 
 while not quedaUnSoloJugador():
     mostrarJugadores()
@@ -63,7 +67,7 @@ while not quedaUnSoloJugador():
         break
 
     mostrarAQuienLeToca()
-    tiro = tirarPerinola()
+    tiro = Perinola.cara_visible
     print(tiro)
 
     if tiro == "Pon 1":# from random import randint
